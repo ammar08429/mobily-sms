@@ -7,10 +7,10 @@ exports.username= '';
 exports.password= '';
 exports.sender= '';
 exports.domainName= '';
+exports.options= {};
 exports.client= 'http://www.mobilywebservices.com:86/SMSWebService/SMSIntegration.asmx?wsdl';
 
 exports.sendSms = function (msg,numbers, cb) {
-	numbers=numbers.join(',');
 	var mobile = this.username;
 	//Mobile number (or username) of your Mobily.ws account
 	var password = this.password;
@@ -18,35 +18,37 @@ exports.sendSms = function (msg,numbers, cb) {
 	var sender = this.sender;
 	//The sender name that will be shown when the message is delivered , it will be encrypted automatically to (urlencode)
 
-	var domainName = this.domainName;
+	var options = this.options;
+
+	if(Array.isArray(numbers)){
+		numbers=numbers.join(',');
+	}
 	soap.createClient(this.client, function(err, client) {
 		if(err){
 			console.log({
-				controller: 'sms libraray',
-				func: 'sendMobilySms',
-				inner_func: 'soap.createClient',
+				func: 'soap createClient',
 				err: err
 			});
 			return cb(err.message,500);
 		}
 
-		var MsgID = getRandomArbitrary(1, 99999);
+		var MsgID = options.MsgID || getRandomArbitrary(1, 99999);
 		//Random number that will be attached with the posting, just in case you want to send same message in less than one hour from the first one
 		//Mobily prevents recurrence send the same message within one hour of being sent, except in the case of sending a different value with each send operation
 
-		var timeSend = 0;
+		var timeSend = options.timeSend || 0;
 		//Determine the send time, 0 means send now
 		//Standard time format is hh:mm:ss
 
-		var dateSend = 0;
+		var dateSend = options.dateSend || 0;
 		//Determine the send date. 0:now
 		//Standard date format is mm:dd:yyyy
 
-		var deleteKey = 152485;
+		var deleteKey = options.deleteKey || 152485;
 		//use this value to delete message using delete potal.
 		//you can specify one number for group of messages to delete
 
-		var lang = 3;
+		var lang = options.lang || 3;
 		//when you send message without encoding you must sent Lang parameter with 3 as its value
 		var sendSMSParam = {
 			'userName': mobile,
@@ -60,9 +62,9 @@ exports.sendSms = function (msg,numbers, cb) {
 			'lang': lang,
 			'messageId': MsgID,
 			'applicationType': '24',
-			'domainName': domainName
+			'domainName': options.domainName || 'www.mobily.ws'
 		};
-		console.log(sendSMSParam);
+
 		client.SendSMS(sendSMSParam, function(err, result) {
 			if(err){
 				console.log({
@@ -76,9 +78,7 @@ exports.sendSms = function (msg,numbers, cb) {
 			parseString(result.SendSMSWithLangAndNotRepeatResult, function (err, jsonRes) {
 				if(err){
 					console.log({
-						controller: 'sms libraray',
-						func: 'sendMobilySms',
-						inner_func: 'parseString',
+						func: 'parseString',
 						err: err
 					});
 					return cb(err.message,500);
