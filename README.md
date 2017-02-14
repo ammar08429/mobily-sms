@@ -4,7 +4,7 @@ An unofficial nodeJs library for Implementation of [Mobily SMS Gateway](https://
 ## Installation
 Install using npm:
 ```sh
-npm install mobily-sms
+npm install mobily-sms --save
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ var mobilySms = require('mobily-sms')('username','password','sender',option);
 
 Sending Sms
 ```javascript
-mobilySms.sendSms('kkk',['966566666666'],function(message,code){
+mobilySms.sendSms('Hello there! How are you?',['966566666666','919999666666'],function(message,code){
   /* Different types of message and code
    * smsSuccessfullySent(200) => Sms was successfully sent
    * invalidMobileNumber(400) => Recipient Mobile number given is wrong

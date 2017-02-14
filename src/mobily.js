@@ -11,6 +11,12 @@ exports.options= {};
 exports.client= 'http://www.mobilywebservices.com:86/SMSWebService/SMSIntegration.asmx?wsdl';
 
 exports.sendSms = function (msg,numbers, cb) {
+	if(!cb){
+		cb = function(message,code){
+			console.log('You haven\'t provided a call back function hence just printing here about the result');
+			console.log(message,code);
+		}
+	}
 	var mobile = this.username;
 	//Mobile number (or username) of your Mobily.ws account
 	var password = this.password;
