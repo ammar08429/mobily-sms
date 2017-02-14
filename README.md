@@ -41,7 +41,7 @@ var mobilySms = require('mobily-sms')('username','password','sender',option);
 
 Sending Sms
 ```javascript
-mobilySms.sendSms('kkk',['966560217980'],function(message,code){
+mobilySms.sendSms('kkk',['966566666666'],function(message,code){
   /* Different types of message and code
    * smsSuccessfullySent(200) => Sms was successfully sent
    * invalidMobileNumber(400) => Recipient Mobile number given is wrong
