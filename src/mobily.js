@@ -23,6 +23,15 @@ exports.sendSms = function (msg,numbers, cb) {
 	if(Array.isArray(numbers)){
 		numbers=numbers.join(',');
 	}
+
+	if(!msg){
+		return cb('noTextMessageGiven',407)
+	}
+
+	if(!numbers){
+		return cb('noMobileNumberGiven',408)
+	}
+
 	soap.createClient(this.client, function(err, client) {
 		if(err){
 			console.log({

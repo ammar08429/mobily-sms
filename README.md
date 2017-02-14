@@ -44,11 +44,13 @@ Sending Sms
 mobilySms.sendSms('kkk',['966560217980'],function(message,code){
   /* Different types of message and code
    * smsSuccessfullySent(200) => Sms was successfully sent
-   * invalidMobileNumber(400) => Recipinet Mobile number given is wrong
+   * invalidMobileNumber(400) => Recipient Mobile number given is wrong
    * autheticationFailed(401) => Password is wrong
-   * userNotFound(404) => Usename give can not be found in the database
-   * invalidTextMessage(405) => Text message is either not there or has invalide encoding
+   * userNotFound(404) => Username give can not be found in the database
+   * invalidTextMessage(405) => Text message has invalid encoding
    * invalidSenderName(406) => Give sender name doesn't match what was registered in the system
+   * noTextMessageGiven(407) => Text message is not there
+   * noMobileNumberGiven(408) => No Mobile number given
    * others(500) => These are un catched error so you will probably get message in arabic language
    */
 });
