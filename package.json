@@ -1,0 +1,32 @@
+{
+  "name": "mobily-sms",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ammar08429/mobily-sms",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ammar08429/mobily-sms.git"
+  },
+  "keywords": [
+    "node",
+    "npm",
+    "mobily",
+    "sms",
+    "javascript"
+  ],
+  "description": "sending sms using mobile sms gateway",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Ammar Ajmal Siddiqi",
+    "email": "ammar08429@gmail.com",
+    "url": "https://github.com/ammar08429"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "soap": "^0.18.0",
+    "xml2js": "^0.4.17"
+  }
+}
