@@ -90,6 +90,9 @@ exports.sendSms = function (msg,numbers, cb) {
 				});
 				return cb(err.message,500);
 			}
+			if(!result.SendSMSWithLangAndNotRepeatResult){
+				return cb('mobilyChangedThereOutPut',500)
+			}
 			parseString(result.SendSMSWithLangAndNotRepeatResult, function (err, jsonRes) {
 				if(err){
 					console.log({
