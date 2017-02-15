@@ -20,7 +20,7 @@ function init(username, password, sender, options) {
   mobily.username=username;
   mobily.password=password;
   mobily.sender=sender;
-  mobily.options=options.options;
+  mobily.options=options.options || {};
 
   return mobily;
 };
