@@ -1,6 +1,12 @@
 # Mobily SMS NodeJs
 An unofficial nodeJs library for Implementation of [Mobily SMS Gateway](https://www.mobily.ws).
 
+# Change Log
+
+## [1.0.0] - 2017-02-16
+### Changed
+- Soap removed, Json api added
+
 ## Installation
 Install using npm:
 ```sh
